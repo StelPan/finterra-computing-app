@@ -1,6 +1,6 @@
 const Path = require("path");
 const { Op } = require("sequelize");
-const { office, office_worker } = require(Path.resolve("http", "db", "models"));
+const { office, office_worker } = require("../../http/db/models");
 
 const search = async function (req, res) {
     try {
