@@ -17,7 +17,7 @@
     "url": "postgresql://c58820_finterra_office_app_na4u_:QaSxeXuysihug15@postgres.c58820.h2/c58820_finterra_office_app_na4u_",
     "username": "c58820_finterra_office_app_na4u_",
     "password": "QaSxeXuysihug15",
-    "database": "c58820_finterra_office_app_na4u_\n",
+    "database": "c58820_finterra_office_app_na4u_",
     "host": "postgres.c58820.h2",
     "dialect": "postgres"
   }
