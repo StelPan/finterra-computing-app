@@ -1,4 +1,3 @@
-const Path = require("path");
 const { Op } = require("sequelize");
 const { office, office_worker } = require("../../http/db/models");
 

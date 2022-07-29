@@ -1,5 +1,4 @@
-const Path = require("path");
-const { office_worker } = require(Path.resolve("http", "db", "models"));
+const { office_worker } = require("../db/models");
 
 /**
  *
