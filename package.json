@@ -5,13 +5,29 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "dev": "nodemon ./http/index"
   },
   "dependencies": {
+    "@yandex-cloud/nodejs-sdk": "^2.1.1",
+    "body-parser": "^1.20.0",
     "core-js": "^3.8.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "dotenv-webpack": "^8.0.0",
+    "express": "^4.18.1",
+    "nodejs-yandex-geocoder": "^1.0.5",
+    "pg": "^8.7.3",
+    "pg-hstore": "^2.3.4",
     "register-service-worker": "^1.7.2",
+    "sequelize": "^6.21.3",
     "vue": "^2.6.14",
-    "vue-router": "^3.5.1"
+    "vue-meta": "^2.4.0",
+    "vue-router": "^3.5.1",
+    "vue-yandex-maps": "^0.11.11",
+    "vuetify": "^2.6.0",
+    "vuex": "^3.6.2",
+    "ymaps": "^0.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
@@ -20,11 +36,18 @@
     "@vue/cli-plugin-eslint": "~5.0.0",
     "@vue/cli-plugin-pwa": "~5.0.0",
     "@vue/cli-plugin-router": "~5.0.0",
+    "@vue/cli-plugin-vuex": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
+    "axios": "^0.18.0",
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^8.0.3",
+    "nodemon": "^2.0.19",
     "sass": "^1.32.7",
     "sass-loader": "^12.0.0",
-    "vue-template-compiler": "^2.6.14"
+    "sequelize-cli": "^6.4.1",
+    "vue-cli-plugin-axios": "~0.0.4",
+    "vue-cli-plugin-vuetify": "~2.5.1",
+    "vue-template-compiler": "^2.6.14",
+    "vuetify-loader": "^1.7.0"
   }
 }
