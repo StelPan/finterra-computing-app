@@ -5,7 +5,7 @@ require("dotenv").config({
 const { app } = require("./server");
 
 const {
-    // APP_HOST,
+    APP_HOST,
     APP_PORT,
 } = require("./config/server");
 
@@ -21,5 +21,6 @@ const callback = function () {
 
 app.listen(
     APP_PORT,
+    APP_HOST,
     callback
 );

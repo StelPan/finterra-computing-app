@@ -1,6 +1,6 @@
-const APP_PORT = process.env.APP_PORT || 3000;
+const APP_PORT = 53272;
 
-const APP_HOST = process.env.APP_HOST || "http://localhost";
+const APP_HOST = "127.0.4.32";
 
 module.exports = {
     APP_PORT,
