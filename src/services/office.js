@@ -7,7 +7,8 @@ import axios from "../plugins/axios";
  */
 export const search = async (geoObject) => {
     const response = await axios.post("/offices/search", geoObject);
-    return response.data.offices;
+    const { region, offices } = response.data;
+    return { region, offices };
 };
 
 /**
@@ -19,7 +20,6 @@ export const searchById = async (id) => {
     const response = await axios.post(`/offices/${id}`);
     return response.data.office;
 };
-
 
 /**
  *

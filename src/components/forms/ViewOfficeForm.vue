@@ -9,7 +9,7 @@
     </v-row>
     <v-row>
       <v-col cols="12">
-        <ChangeOfficeForm :office-data="office" />
+        <ChangeOfficeForm :office-data="concreteOffice" />
       </v-col>
     </v-row>
     <v-row>
@@ -24,7 +24,7 @@
       <v-col cols="12">
         <OfficeWorkersTable
             v-on:destroy="deleteWorker"
-            :workers="!Array.isArray(office.office_workers) ? [] : office.office_workers"
+            :workers="concreteOfficeWorkers"
         />
       </v-col>
     </v-row>
@@ -37,7 +37,6 @@ import {
   createWorker,
   destroyWorker,
   destroyReason,
-  searchById,
   update
 } from "@/services/office";
 import { geocode } from "@/services/yandex-geocode";
@@ -46,28 +45,24 @@ import CreateWorkerForm from "@/components/forms/CreateWorkerForm";
 import OfficeWorkersTable from "@/components/tables/OfficeWorkersTable";
 import ChangeOfficeForm from "@/components/forms/ChangeOfficeForm";
 
+import { mapActions, mapGetters } from "vuex";
 export default {
   name: "ViewOfficeForm",
-  data () {
-    return {
-      office: {}
-    }
-  },
   components: {
     CreateWorkerForm,
     OfficeWorkersTable,
     ChangeOfficeForm,
   },
   methods: {
+    ...mapActions({
+      loadConcreteOffice: "fetchCurrentOffice",
+    }),
     async change() {
       const information = await geocode(this.form.full_address);
       await update(this.officeData.id, {
         geocode: information.response.GeoObjectCollection,
         form: this.form,
       });
-    },
-    async loadData(id) {
-      this.office = await searchById(id);
     },
     async deleteWorker(id) {
       const trying = confirm("Вы действительно хотите удалить работника?");
@@ -98,6 +93,12 @@ export default {
       this.office.office_workers.push(worker);
     },
   },
+  computed: {
+    ...mapGetters({
+      concreteOffice: "getCurrentOffice",
+      concreteOfficeWorkers: "getOfficeWorkers"
+    }),
+  },
   props: {
     officeId: {
       type: Number,
@@ -112,7 +113,7 @@ export default {
           return;
         }
 
-        await this.loadData(id);
+        await this.loadConcreteOffice(id);
       }
     },
   }

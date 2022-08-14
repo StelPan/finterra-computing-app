@@ -1,15 +1,29 @@
 const { Op } = require("sequelize");
-const { office, office_worker } = require("../../http/db/models");
+const { office, office_worker, region } = require("../../http/db/models");
 
 const search = async function (req, res) {
     try {
-        const { metaDataProperty, featureMember } = req.body.response.GeoObjectCollection;
-        const { Address } = featureMember[0].GeoObject.metaDataProperty.GeocoderMetaData;
-        const { formatted } = Address;
-        const offices = await office.findAll({
-            where: { full_address: { [Op.substring]: formatted } }
+        const { address, region: name } = req.body;
+        console.log("Регион: ", name);
+        const findRegion = await region.findOne({
+            where: { name }
         });
-        return res.status(200).json({ offices });
+
+        if (!findRegion) {
+            return res.status(200).json({
+               error: "REGION_NOT_EXIST",
+               msg: "Region fot found"
+            });
+        }
+
+        const findOffices = await office.findAll({
+            where: { full_address: { [Op.substring]: address } }
+        });
+
+        return res.status(200).json({
+            region: findRegion,
+            offices: findOffices
+        });
     } catch (e) {
         console.error(e);
     }

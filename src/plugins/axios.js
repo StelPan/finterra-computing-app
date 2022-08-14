@@ -7,8 +7,12 @@ import axios from "axios";
 // axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
 // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
+const baseURL = process.env.NODE_ENV === "production" ?
+    process.env.API_URL_PRODUCTION :
+    process.env.API_URL_DEVELOPMENT;
+
 let config = {
-  baseURL: process.env.API_URL ? process.env.API_URL : "/",
+  baseURL,
   // timeout: 60 * 1000, // Timeout
   // withCredentials: true, // Check cross-site Access-Control
 };

@@ -1,6 +1,7 @@
 export const state = () => ({
     updateOfficeDialog: false,
     addOfficeDialog: false,
+    createRegionDialog: false,
 });
 
 export const actions = {
@@ -24,5 +25,8 @@ export const getters = {
     },
     getAddOfficeDialogState(state) {
         return state.addOfficeDialog;
+    },
+    getCreateRegionDialogState(state) {
+        return state.createRegionDialog;
     }
 };

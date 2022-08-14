@@ -5,3 +5,8 @@ app.use(
     require("./office").Router
 );
 
+app.use(
+    "/regions",
+    require("./region").Router
+);
+

@@ -3,17 +3,17 @@
       :headers="headers"
       :items="workers"
   >
-    <template v-slot:[`item.actions`]="{ item: { id } }">
+    <template v-slot:[`item.actions`]="{ item }">
       <v-btn-toggle
           dense
           background-color="primary"
           multiple
       >
-        <v-btn color="red" @click="destroy(id)">
+        <v-btn color="red" @click="destroy(item)">
           <v-icon color="white">mdi-delete</v-icon>
         </v-btn>
 
-        <v-btn>
+        <v-btn @click="switchEdit(item)">
           <v-icon>mdi-lead-pencil</v-icon>
         </v-btn>
       </v-btn-toggle>
@@ -33,12 +33,15 @@ export default {
         { text: 'Почта', value: 'email' },
         { text: 'Действия', value: 'actions'}
       ],
-      isEdit: false,
+      edits: []
     }
   },
   methods: {
-    destroy (id) {
+    destroy({ id }) {
       this.$emit("destroy", id);
+    },
+    switchEdit(item) {
+      item.edit = true;
     }
   },
   props: {

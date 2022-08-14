@@ -89,12 +89,12 @@
 
 <script>
 import {
-  update,
   addReasons,
   destroyReason,
-  createWorker,
 } from "@/services/office";
 import { geocode } from "@/services/yandex-geocode";
+
+import { mapActions } from "vuex";
 
 export default {
   name: "ChangeOfficeForm",
@@ -115,13 +115,17 @@ export default {
     }
   },
   methods: {
+    ...mapActions({
+      updateOffice: "fetchUpdateOffice",
+    }),
     async change() {
       const information = await geocode(this.form.full_address);
-      const response = await update(this.officeData.id, {
-        geocode: information.response.GeoObjectCollection,
-        form: this.form,
+      await this.updateOffice({
+        id: this.officeData.id,
+        data: { geocode: information.response.GeoObjectCollection, form: this.form }
       });
-      console.log(response);
+
+      // TODO: alert update form
     },
     async addReasons() {
       await addReasons(
@@ -135,12 +139,7 @@ export default {
     async destroyReasons() {
       await destroyReason(this.officeData.id);
       this.form.reason = "";
-    },
-    async createWorker(data) {
-      const response = await createWorker(this.officeData.id, data);
-      const worker = response.create;
-      this.form.office_workers.push(worker);
-    },
+    }
   },
   props: {
     officeData: {

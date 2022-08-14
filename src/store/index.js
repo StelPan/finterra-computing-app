@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import * as dialog from './modules/dialogs';
+
+import * as dialogModule from './modules/dialogs';
+import * as officeModule from './modules/office';
+import * as regionModule from "./modules/regions";
 
 Vue.use(Vuex)
 
@@ -14,6 +17,8 @@ export default new Vuex.Store({
   actions: {
   },
   modules: {
-    dialog,
+    dialogModule,
+    officeModule,
+    regionModule,
   }
 })
